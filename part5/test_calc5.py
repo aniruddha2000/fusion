@@ -38,5 +38,38 @@ class LexerTestCase(unittest.TestCase):
         self.assertEqual(token.value, '/')
 
 
+class TestInterpreter(unittest.TestCase):
+
+    def makeInterpreter(self, text):
+        lexer = Lexer(text)
+        interpreter = Interpreter(lexer)
+        return interpreter
+
+    def test_only_int(self):
+        interpreter = self.makeInterpreter('3')
+        result = interpreter.expr()
+        self.assertEqual(result, 3)
+
+    def test_plus_mul(self):
+        interpreter = self.makeInterpreter('4 + 8 * 2')
+        result = interpreter.expr()
+        self.assertEqual(result, 20)
+
+    def test_minus_div(self):
+        interpreter = self.makeInterpreter('10 - 6 / 3')
+        result = interpreter.expr()
+        self.assertEqual(result, 8)
+
+    def test_all_operators(self):
+        interpreter = self.makeInterpreter('7 * 4 / 2 + 5 / 3 - 6')
+        result = interpreter.expr()
+        self.assertEqual(result, 9)
+
+    def test_invalid_expression(self):
+        interpreter = self.makeInterpreter('3 *')
+        with self.assertRaises(Exception):
+            interpreter.expr()
+
+
 if __name__ == '__main__':
     unittest.main()
