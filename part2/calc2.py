@@ -1,7 +1,7 @@
 # Token types
 # EOF (end-of-file) token is used to indicate that
 # there is no more input left for lexical analysis
-INTEGER, PLUS, MINUS, MULTIPLY, DIVIDE, EOF = 'INTEGER', 'PLUS', 'MINUS', 'MULTIPLY', 'DIVIDE', 'EOF'
+INTEGER, PLUS, MINUS, MUL, DIV, EOF = 'INTEGER', 'PLUS', 'MINUS', 'MUL', 'DIV', 'EOF'
 
 
 class Token(object):
@@ -85,11 +85,11 @@ class Interpreter(object):
 
             if self.current_char == '*':
                 self.advance()
-                return Token(MULTIPLY, '*')
+                return Token(MUL, '*')
 
             if self.current_char == '/':
                 self.advance()
-                return Token(DIVIDE, '/')
+                return Token(DIV, '/')
 
             self.error()
 
@@ -110,8 +110,8 @@ class Interpreter(object):
 
         expr -> INTEGER PLUS INTEGER
         expr -> INTEGER MINUS INTEGER
-        expr -> INTEGER MULTIPLY INTEGER
-        expr -> INTEGER DIVIDE INTEGER
+        expr -> INTEGER MUL INTEGER
+        expr -> INTEGER DIV INTEGER
         """
         # set current token to the first token taken from the input
         self.current_token = self.get_next_token()
@@ -126,10 +126,10 @@ class Interpreter(object):
             self.eat(PLUS)
         elif op.type == MINUS:
             self.eat(MINUS)
-        elif op.type == MULTIPLY:
-            self.eat(MULTIPLY)
-        elif op.type == DIVIDE:
-            self.eat(DIVIDE)
+        elif op.type == MUL:
+            self.eat(MUL)
+        elif op.type == DIV:
+            self.eat(DIV)
 
         # we expect the current token to be an integer
         right = self.current_token
@@ -146,9 +146,9 @@ class Interpreter(object):
             result = left.value + right.value
         elif op.type == MINUS:
             result = left.value - right.value
-        elif op.type == MULTIPLY:
+        elif op.type == MUL:
             result = left.value * right.value
-        elif op.type == DIVIDE:
+        elif op.type == DIV:
             result = left.value / right.value
         return result
 

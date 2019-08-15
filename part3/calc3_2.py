@@ -2,12 +2,12 @@
 #
 # EOF (end-of-file) token is used to indicate that
 # there is no more input left for lexical analysis
-INTEGER, MULTIPLY, DIVIDE, EOF = 'INTEGER', 'MULTIPLY', 'DIVIDE', 'EOF'
+INTEGER, MUL, DIV, EOF = 'INTEGER', 'MUL', 'DIV', 'EOF'
 
 
 class Token(object):
     def __init__(self, type, value):
-        # token type: INTEGER, MULTIPLY, DIVIDE, or EOF
+        # token type: INTEGER, MUL, DIV, or EOF
         self.type = type
         # token value: non-negative integer value, '+', '-', or None
         self.value = value
@@ -17,7 +17,7 @@ class Token(object):
 
         Examples:
             Token(INTEGER, 3)
-            Token(DIVIDE, '/')
+            Token(DIV, '/')
         """
         return 'Token({type}, {value})'.format(
             type=self.type,
@@ -81,11 +81,11 @@ class Interpreter(object):
 
             if self.current_char == '*':
                 self.advance()
-                return Token(MULTIPLY, '*')
+                return Token(MUL, '*')
 
             if self.current_char == '/':
                 self.advance()
-                return Token(DIVIDE, '/')
+                return Token(DIV, '/')
 
             self.error()
 
@@ -116,13 +116,13 @@ class Interpreter(object):
         self.current_token = self.get_next_token()
 
         result = self.term()
-        while self.current_token.type in (MULTIPLY, DIVIDE):
+        while self.current_token.type in (MUL, DIV):
             token = self.current_token
-            if token.type == MULTIPLY:
-                self.eat(MULTIPLY)
+            if token.type == MUL:
+                self.eat(MUL)
                 result = result * self.term()
-            elif token.type == DIVIDE:
-                self.eat(DIVIDE)
+            elif token.type == DIV:
+                self.eat(DIV)
                 result = result / self.term()
 
         return result
