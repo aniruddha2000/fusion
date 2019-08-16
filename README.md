@@ -39,3 +39,8 @@
 * concept of **associativity** and **precedence** for operator.
 * How we calculate arithmetic expressions containing any number of +, -, *, or / operators.
 * Learned how to write unit tests.
+
+## Learning (Part - 6):
+
+* I have learned How to calculate an arithmatic expression containing parentheses.
+* Leraned how to divide parentheses into tokens.
