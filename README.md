@@ -54,3 +54,9 @@
 * Difference between AST and the parse tree.
 * Various traversal method(preorder, inorder, postorder).
 * Modified the parser and interpreter and split them apart. Now the parser is getting a token from lexer and returning generating the AST for the interpreter to traverse and interpret the input.
+
+## Learning (Part - 8):
+
+* Concept of unary operators and it's precedence.
+* Extending the grammar to handle unary plus and minus operators.
+* Extending the parser to generate an AST with `UnaryOp` node and the interpreter with a new `visit_UnaryOp` method to interpret unary operators.
