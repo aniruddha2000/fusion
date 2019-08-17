@@ -44,3 +44,13 @@
 
 * I have learned How to calculate an arithmatic expression containing parentheses.
 * Leraned how to divide parentheses into tokens.
+
+## Learning (Part - 7):
+
+* Concept about the tree data structure.
+* Idea of **root**, **node**, **interior node**, **leaf node**, **parent**, **child(left, right)**.
+* Concept of concrete syntax tree.
+* **AST(abstract-syntax-tree)** - An abstract syntax tree (AST) is a tree that represents the abstract syntactic structure of a language construct where each interior node and the root node represents an operator, and the children of the node represent the operands of that operator.
+* Difference between AST and the parse tree.
+* Various traversal method(preorder, inorder, postorder).
+* Modified the parser and interpreter and split them apart. Now the parser is getting a token from lexer and returning generating the AST for the interpreter to traverse and interpret the input.
