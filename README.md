@@ -60,3 +60,4 @@
 * Concept of unary operators and it's precedence.
 * Extending the grammar to handle unary plus and minus operators.
 * Extending the parser to generate an AST with `UnaryOp` node and the interpreter with a new `visit_UnaryOp` method to interpret unary operators.
+* Calling the function `factor(self)` from inside it in [#L168](https://github.com/aniruddha2000/fusion/blob/master/part8/spi.py#L168) and [#L172](https://github.com/aniruddha2000/fusion/blob/master/part8/spi.py#L172) so that it can get the unary operator token.
