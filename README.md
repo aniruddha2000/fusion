@@ -61,3 +61,40 @@
 * Extending the grammar to handle unary plus and minus operators.
 * Extending the parser to generate an AST with `UnaryOp` node and the interpreter with a new `visit_UnaryOp` method to interpret unary operators.
 * Calling the function `factor(self)` from inside it in [#L168](https://github.com/aniruddha2000/fusion/blob/master/part8/spi.py#L168) and [#L172](https://github.com/aniruddha2000/fusion/blob/master/part8/spi.py#L172) so that it can get the unary operator token.
+
+## Learning (Part - 9):
+
+* Made changes to the grammar.
+    ```
+    program : compound_statement DOT
+
+    compound_statement : BEGIN statement_list END
+
+    statement_list : statement
+                   | statement SEMI statement_list
+
+    statement : compound_statement
+              | assignment_statement
+              | empty
+
+    assignment_statement : variable ASSIGN expr
+
+    empty :
+
+    expr: term ((PLUS | MINUS) term)*
+
+    term: factor ((MUL | DIV) factor)*
+
+    factor : PLUS factor
+           | MINUS factor
+           | INTEGER
+           | LPAREN expr RPAREN
+           | variable
+
+    variable: ID
+    ```
+* Made changes in the lexer like adding new tokens and added a `peak` and `_id` method and also edited the `get_next_token` method for new tokens.
+* Added new AST nodes(Compound, Assign, Var, NoOp) to the parser for new language constructs.
+* Added [new methods](https://github.com/aniruddha2000/fusion/blob/master/part9/spi.py#L228-L301) corresponding to the new grammar rules to our recursive-descent parser and updated the existing methods like `factor` and `term`.
+* Added [new visitor methods](https://github.com/aniruddha2000/fusion/blob/master/part9/spi.py#L442-L459) to the interpreter.
+* Added a dictionary for storing variables.
