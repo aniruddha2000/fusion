@@ -98,3 +98,52 @@
 * Added [new methods](https://github.com/aniruddha2000/fusion/blob/master/part9/spi.py#L228-L301) corresponding to the new grammar rules to our recursive-descent parser and updated the existing methods like `factor` and `term`.
 * Added [new visitor methods](https://github.com/aniruddha2000/fusion/blob/master/part9/spi.py#L442-L459) to the interpreter.
 * Added a dictionary for storing variables.
+
+## Learning (Part - 10):
+
+* Added few grammar rules like block, declaration, variable_declaration, type_spec and updated some grammar like term and factor. Here below our new grammar -
+  ```
+  program : PROGRAM variable SEMI block DOT
+
+    block : declarations compound_statement
+
+    declarations : VAR (variable_declaration SEMI)+
+                 | empty
+
+    variable_declaration : ID (COMMA ID)* COLON type_spec
+
+    type_spec : INTEGER | REAL
+
+    compound_statement : BEGIN statement_list END
+
+    statement_list : statement
+                   | statement SEMI statement_list
+
+    statement : compound_statement
+              | assignment_statement
+              | empty
+
+    assignment_statement : variable ASSIGN expr
+
+    empty :
+
+    expr : term ((PLUS | MINUS) term)*
+
+    term : factor ((MUL | INTEGER_DIV | FLOAT_DIV) factor)*
+
+    factor : PLUS factor
+           | MINUS factor
+           | INTEGER_CONST
+           | REAL_CONST
+           | LPAREN expr RPAREN
+           | variable
+
+    variable: ID
+  ```
+* Made changes in the lexer like -
+  * Adding new tokens.
+  * Adding new reserved keywords and updating some previous one.
+  * Adding new `skip_comment` method to handle pascal comment and updated the `integer` and `get_next_token` method.
+* Added [new AST nodes](https://github.com/aniruddha2000/fusion/blob/master/part10/spi.py#L265-L286) like `Program`, `Block`, `VarDecl`, `Type`.
+* Added [new methods](https://github.com/aniruddha2000/fusion/blob/master/part10/spi.py#L319-L369) and updated the existing parser methods like `program`, `term`, `factor`.
+* Added [new visitor methods](https://github.com/aniruddha2000/fusion/blob/master/part10/spi.py#L570-L584) and updated the `visit_BinOp` method.
