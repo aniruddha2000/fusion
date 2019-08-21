@@ -147,3 +147,9 @@
 * Added [new AST nodes](https://github.com/aniruddha2000/fusion/blob/master/part10/spi.py#L265-L286) like `Program`, `Block`, `VarDecl`, `Type`.
 * Added [new methods](https://github.com/aniruddha2000/fusion/blob/master/part10/spi.py#L319-L369) and updated the existing parser methods like `program`, `term`, `factor`.
 * Added [new visitor methods](https://github.com/aniruddha2000/fusion/blob/master/part10/spi.py#L570-L584) and updated the `visit_BinOp` method.
+
+## Learning (Part - 11):
+
+* Symbol - It is an identifier of some program entity like a variable, subroutine, or built-in type. Added two classes called `BuiltinTypeSymbol` , `VarSymbol` and both are inheriting the class `Symbol`.
+* Symbol table - A symbol table is an abstract data type (ADT) for tracking various symbols in source code. Added `SymbolTable` class to handle this operation.
+* Edited the `visit_Assign` and `visit_Var` method so that it can check weather a variable is declared or not before they are used in assignments and expressions.
