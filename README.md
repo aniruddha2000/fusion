@@ -7,13 +7,13 @@
 * Concept of compiler.
 * Difference between compilr and interpreter.
 * Concept of token.
-* How lexical analysis works.
+* Lexical analysis - The process of breaking sentences in to token is called lexical analysis.
 * How **scanner** or **tokenizer** as the part of the intrpreter or compiler that does the lexical analysis.
 
 ## Learning (Part - 2):
 
 * Concept of lexeme.
-* How interpreter does parsing.
+* Parsing - The process of recognizing a phrase in the stream of tokens or, to put it differently, the process of finding structure in the stream of tokens is called parsing.
 * How parser works.
 
 ## Learning (Part - 3):
