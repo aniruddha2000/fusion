@@ -153,3 +153,16 @@
 * Symbol - It is an identifier of some program entity like a variable, subroutine, or built-in type. Added two classes called `BuiltinTypeSymbol` , `VarSymbol` and both are inheriting the class `Symbol`.
 * Symbol table - A symbol table is an abstract data type (ADT) for tracking various symbols in source code. Added `SymbolTable` class to handle this operation.
 * Edited the `visit_Assign` and `visit_Var` method so that it can check weather a variable is declared or not before they are used in assignments and expressions.
+
+## Learning (Part - 12):
+
+* Procedure declaration - it is a language construct that defines an identifier (a procedure name) and associates it with a block of Pascal code.
+* Updated the grammar(declarations) -
+  ```
+  declarations : VAR (variable_declaration SEMI)+
+                     | (PROCEDURE ID SEMI block SEMI)*
+                     | empty
+  ```
+* Updated the lexer by adding `PROCEDURE` in new token and reserved keywords.
+* Updated the parser by adding the `ProcedureDecl` AST nodes and modified the [declarations method](https://github.com/aniruddha2000/fusion/blob/master/part12/spi.py#L332-L356) to support procedure declaration.
+* Updated the interpreter by adding a `visit_ProcedureDecl` in the `Interpreter` class.
