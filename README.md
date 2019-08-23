@@ -166,3 +166,9 @@
 * Updated the lexer by adding `PROCEDURE` in new token and reserved keywords.
 * Updated the parser by adding the `ProcedureDecl` AST nodes and modified the [declarations method](https://github.com/aniruddha2000/fusion/blob/master/part12/spi.py#L332-L356) to support procedure declaration.
 * Updated the interpreter by adding a `visit_ProcedureDecl` in the `Interpreter` class.
+
+## Learning (Part - 13):
+
+* Semantic analysis - it iss just a process to help us determine whether a program makes sense, and that it has meaning, according to a language definition.
+* Added an algorithm by which we store all information about variable declarations in a stash and when you see a variable reference, such as in the assignment statement `x := x + y`, search the stash by the variable’s name to see if the stash has any information about the variable. If yes then the variable has been declared and if not then there is a semantic error.
+* Concept how to code a semantic analyzer that walks an AST, builds the symbol table, and does basic semantic checks.
