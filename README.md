@@ -150,13 +150,13 @@
 
 ## Learning (Part - 11):
 
-* Symbol - It is an identifier of some program entity like a variable, subroutine, or built-in type. Added two classes called `BuiltinTypeSymbol` , `VarSymbol` and both are inheriting the class `Symbol`.
-* Symbol table - A symbol table is an abstract data type (ADT) for tracking various symbols in source code. Added `SymbolTable` class to handle this operation.
+* **Symbol** - It is an identifier of some program entity like a variable, subroutine, or built-in type. Added two classes called `BuiltinTypeSymbol` , `VarSymbol` and both are inheriting the class `Symbol`.
+* **Symbol table** - A symbol table is an abstract data type (ADT) for tracking various symbols in source code. Added `SymbolTable` class to handle this operation.
 * Edited the `visit_Assign` and `visit_Var` method so that it can check weather a variable is declared or not before they are used in assignments and expressions.
 
 ## Learning (Part - 12):
 
-* Procedure declaration - it is a language construct that defines an identifier (a procedure name) and associates it with a block of Pascal code.
+* **Procedure declaration** - it is a language construct that defines an identifier (a procedure name) and associates it with a block of Pascal code.
 * Updated the grammar(declarations) -
   ```
   declarations : VAR (variable_declaration SEMI)+
@@ -169,6 +169,20 @@
 
 ## Learning (Part - 13):
 
-* Semantic analysis - it iss just a process to help us determine whether a program makes sense, and that it has meaning, according to a language definition.
+* **Semantic analysis** - it is just a process to help us determine whether a program makes sense, and that it has meaning, according to a language definition.
 * Added an algorithm by which we store all information about variable declarations in a stash and when you see a variable reference, such as in the assignment statement `x := x + y`, search the stash by the variable’s name to see if the stash has any information about the variable. If yes then the variable has been declared and if not then there is a semantic error.
 * Concept how to code a semantic analyzer that walks an AST, builds the symbol table, and does basic semantic checks.
+
+## Learning (Part - 14):
+
+* Concept of scope(global scope, nested scope) in a programming language and how it helps.
+  * Every scope creates an isolated name space, which means that variables declared in a scope cannot be accessed    from outside of it.
+  * You can re-use the same name in different scopes and know exactly, just by looking at the program source code,   what declaration the name refers to at every point in the program.
+  * In a nested scope you can re-declare a variable with the same name as in the outer scope, thus effectively       hiding the outer declaration, which gives you control over access to different variables from the outer scope.
+* Enhanced our `SymbolTable` class to `ScopedSymbolTable` class by updating some stuffs, So that it can handle scope feature in our new spi.
+* Changed the grammar and updated the parser so that it can handle the procedure parameters.
+* Concept of procedure symbol and introduced a new class called `ProcedureSymbol` class.
+* Concept of scope symbol table. Added `visit_ProcedureDecl` and updated our `visit_Program` method to create the scoped symbol tables. Updated the semantic analyzer visitor methods `visit_VarDecl`, `visit_Var` for inserting and looking up the symbols.
+* Updated the `ScopedSymbolTable` class and add a variable `enclosing_scope` that will hold a pointer to the scope’s enclosing scope and this will be link between scopes. Updated the `visit_Program` and `visit_ProcedureDecl` methods to create an actual link to the scope’s enclosing scope.
+* We updated the `lookup` method in `ScopedSymbolTable` class to seach for variable declaration in the scopes.
+* **source-to-source compiler** - It is a compiler that translates a program in some source language into a program in the same (or almost the same) source language.
