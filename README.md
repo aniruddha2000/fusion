@@ -186,3 +186,12 @@
 * Updated the `ScopedSymbolTable` class and add a variable `enclosing_scope` that will hold a pointer to the scope’s enclosing scope and this will be link between scopes. Updated the `visit_Program` and `visit_ProcedureDecl` methods to create an actual link to the scope’s enclosing scope.
 * We updated the `lookup` method in `ScopedSymbolTable` class to seach for variable declaration in the scopes.
 * **source-to-source compiler** - It is a compiler that translates a program in some source language into a program in the same (or almost the same) source language.
+
+## Learning (Part - 15):
+
+* Improved the error reporting in lexer, parser ad semantic analyzer. Introduced new classes called `ErrorCode`, `Error`, `LexerError`, `ParserError`, `SemanticError`.[Here `ErrorCode` is an enumeration class]
+* To provide the position of the error message we updated the `Lexer` class constructor and the `advance` method so that it can count the line and column.
+* Instead of having the token types defined as module level variables, we are going to move them into a enumeration class called `TokenType`.
+* Created a new method called `_build_reserved_keywords` so that it can build the 'RESERVED KEYWORDS' from the class `TokenType`.
+* Refactored the `declaration` method and move the procedure declaration into another method called `procedure_declaration`.
+* Added the `log` method to both `ScopedSymbolTable` and `SemanticAnalyzer`. Updated the main function and added a command line option "--scope" to turn scope logging on and off(off by default).
