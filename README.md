@@ -195,3 +195,9 @@
 * Created a new method called `_build_reserved_keywords` so that it can build the 'RESERVED KEYWORDS' from the class `TokenType`.
 * Refactored the `declaration` method and move the procedure declaration into another method called `procedure_declaration`.
 * Added the `log` method to both `ScopedSymbolTable` and `SemanticAnalyzer`. Updated the main function and added a command line option "--scope" to turn scope logging on and off(off by default).
+
+## Learning (Part - 16):
+
+* We extended our statement grammar and included a new rule called `proccall_statement`.
+* We added a method called `proccall_statement` and a class called `ProcedureCall`.
+* Distinguished between procedure call and assignment of any variable by updaing the `statement` methodd.
