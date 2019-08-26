@@ -201,3 +201,4 @@
 * We extended our statement grammar and included a new rule called `proccall_statement`.
 * We added a method called `proccall_statement` and a class called `ProcedureCall`.
 * Distinguished between procedure call and assignment of any variable by updaing the `statement` methodd.
+* Added a new variable called `WRONG_PARAMS_NUM` in the class `ErrorCode` that contain the error message for wrong number of parameters in procedure call. Added the method called `visit_ProcedureCall` in the class of `SemanticAnalyzer` for checking parametrs and if there is any problm it will throw the error.
