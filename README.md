@@ -202,3 +202,52 @@
 * We added a method called `proccall_statement` and a class called `ProcedureCall`.
 * Distinguished between procedure call and assignment of any variable by updaing the `statement` methodd.
 * Added a new variable called `WRONG_PARAMS_NUM` in the class `ErrorCode` that contain the error message for wrong number of parameters in procedure call. Added the method called `visit_ProcedureCall` in the class of `SemanticAnalyzer` for checking parametrs and if there is any problm it will throw the error.
+* Now the program grammar is like this -
+  ```
+  program : PROGRAM variable SEMI block DOT
+
+        block : declarations compound_statement
+
+        declarations : (VAR (variable_declaration SEMI)+)? procedure_declaration*
+
+        variable_declaration : ID (COMMA ID)* COLON type_spec
+
+        procedure_declaration :
+             PROCEDURE ID (LPAREN formal_parameter_list RPAREN)? SEMI block SEMI
+
+        formal_params_list : formal_parameters
+                           | formal_parameters SEMI formal_parameter_list
+
+        formal_parameters : ID (COMMA ID)* COLON type_spec
+
+        type_spec : INTEGER | REAL
+
+        compound_statement : BEGIN statement_list END
+
+        statement_list : statement
+                       | statement SEMI statement_list
+
+        statement : compound_statement
+                  | proccall_statement
+                  | assignment_statement
+                  | empty
+
+        proccall_statement : ID LPAREN (expr (COMMA expr)*)? RPAREN
+
+        assignment_statement : variable ASSIGN expr
+
+        empty :
+
+        expr : term ((PLUS | MINUS) term)*
+
+        term : factor ((MUL | INTEGER_DIV | FLOAT_DIV) factor)*
+
+        factor : PLUS factor
+               | MINUS factor
+               | INTEGER_CONST
+               | REAL_CONST
+               | LPAREN expr RPAREN
+               | variable
+
+        variable: ID
+  ```
