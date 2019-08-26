@@ -11,6 +11,7 @@ class ErrorCode(Enum):
     UNEXPECTED_TOKEN = 'Unexpected token'
     ID_NOT_FOUND     = 'Identifier not found'
     DUPLICATE_ID     = 'Duplicate id found'
+    WRONG_PARAMS_NUM = 'Wrong number of arguments'
 
 
 class Error(Exception):
@@ -1004,6 +1005,19 @@ class SemanticAnalyzer(NodeVisitor):
         for param_node in node.actual_params:
             self.visit(param_node)
 
+    def visit_ProcedureCall(self, node):
+        proc_symbol = self.current_scope.lookup(node.proc_name)
+        formal_params = proc_symbol.params
+        actual_params = node.actual_params
+
+        if len(actual_params) != len(formal_params):
+            self.error(
+                error_code=ErrorCode.WRONG_PARAMS_NUM,
+                token=node.token
+            )
+
+        for param_node in node.actual_params:
+            self.visit(param_node)
 
 ###############################################################################
 #                                                                             #
