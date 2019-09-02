@@ -5,7 +5,7 @@
 
 * Concept of interpreter.
 * Concept of compiler.
-* Difference between compilr and interpreter.
+* Difference between compiler and interpreter.
 * Concept of token.
 * Lexical analysis - The process of breaking sentences in to token is called lexical analysis.
 * How **scanner** or **tokenizer** as the part of the intrpreter or compiler that does the lexical analysis.
