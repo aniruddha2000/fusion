@@ -251,3 +251,17 @@
 
         variable: ID
   ```
+
+## Learning (Part - 17):
+
+* The concept of memory system and why we need it.
+* **stack** - A stack is a data structure that is based on a “last-in-first-out” policy (LIFO), which means that the most recent item added to the stack is the first one that comes out. Stack will have following methods -
+  * Push (to add the item into the stack)
+  * Pop (to remove the item from the stack)
+  * Peek (to return the item at the top of the stack without removing it)
+* **Activatio Record** - An activation record is a dictionary-like object for maintaining information about the currently executing invocation of a procedure or function, and also the program itself.
+* Replaced the `GLOBAL_MEMORY` dictionary with the `CallStack()` in the interpreter class.
+* Update the `visit_Program` method to use the call stack to push and pop an activation record that will hold the values of global variables.
+* Update the `visit_Assign` method to store a key-value pair in the activation record at the top of the call stack.
+* Update the `visit_Var` method to access a value by its name from the activation record at the top of the call stack.
+* Add a log method and update the `visit_Program` method to use it to print the contents of the call stack when interpreting a program.
