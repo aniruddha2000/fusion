@@ -1,6 +1,10 @@
 # Fusion
 ---------
 
+## Run all Python tests:
+
+`$ ./run_py_tests.sh`
+
 ## Learning (Part - 1):
 
 * Concept of interpreter.
